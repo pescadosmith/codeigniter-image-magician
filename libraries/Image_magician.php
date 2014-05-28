@@ -173,14 +173,11 @@ class Image_magician
 	
 	public function pyramid_tiff_format($image_path) {
         	$dot_pos = strripos($image_path, '.');
-        	if (substr($image_path, ($dot_pos + 1)) === $new_format) {
-            		return TRUE;
-        	}
 
         	$this->source_image = $image_path;
         	$this->new_image = substr($image_path, 0, $dot_pos) . '.tif';
 
-        	$cmd = "' . $this->source_image . '[0]" . " -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:$this->new_image' ";
+        	$cmd = ' "' . $this->source_image . '[0]"' . " -define tiff:tile-geometry=256x256 -compress jpeg 'ptif:$this->new_image' ";
 
         	$this->im_overwrite = FALSE;
 
