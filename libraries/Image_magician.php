@@ -149,14 +149,14 @@ class Image_magician
 	public function change_format($image_path, $new_format = 'jpg')
 	{
 		$dot_pos = strripos($image_path, '.');
-		if (substr($image_path, ($pos + 1)) === $new_format)
+		if (substr($image_path, ($dot_pos + 1)) === $new_format)
 		{
 			return TRUE;
 		}
 
 		$this->source_image = $image_path;
-		$this->new_image = substr($image_path, 0, $pos) . '.' . $new_format;
-		$this->im_overwrite = $overwrite_original;
+		$this->new_image = substr($image_path, 0, $dot_pos) . '.' . $new_format;
+		$this->im_overwrite = FALSE;
 		$this->im_format = $new_format;
 
 		$cmd = $this->compile_command();
